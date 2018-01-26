@@ -2,35 +2,59 @@
   "presets": [
     [
       "env",
+      //设置babel-preset-env，可以省略前缀babel-preset-
       {
-        "modules": false
+        "modules": false,
+        //设置ES6模块语法是否转换为"amd" | "umd" | "systemjs" | "commonjs"
+        "targets":{
+          "browsers":["last 2 versions"],
+          //选择浏览器范围进行解析，影响polyfill大小，看你项目的兼容性要求
+          //默认> 1%, last 2 versions, Firefox ESR
+          //设置选项参考https://github.com/ai/browserslist#queries
+          "uglify":false
+        //uglify-js不支持ES2015，设置,"uglify":true
+        //webpack的UglifyJsPlugin插件是基于uglify-es，它是支持ES2015语法的，所以设置"uglify":false（默认）
+        //这个选项有可能在babel 7移除，替换为forceAllTransforms，跟targets并列
+        //babel官方推荐babel-minify压缩ES2015语法
+        //基于个人需要选择
+        },
+        "useBuiltIns":true
+        //将polyfill应用与babel-preset-env，但是不会包含stage-x的内容，可以减小打包文件大小
+        //代替手动导入polyfill
       }
+      //选项对象配置babel-preset-env
     ],
-    "react",
-    "stage-0"
+    "react",//解析react
+    "stage-0"//解析stage-0草案
   ],
+  //presets执行顺序是倒序，即先执行stage-0、react、env
   "plugins": [
-    "transform-runtime",
+    ["transform-runtime", {
+      "helpers": false,
+      //是否吧babel内联helper，比如classCallCheck, extends替换为模块
+      "polyfill": false,
+      //是否把内置变量转换为私有polyfill
+      "regenerator": true,
+      //是否把generator 函数转换为使用regenerator runtime，它不会污染全局变量
+      "moduleName": "babel-runtime",
+      //设置导入helpers时的名字和路径
+    }],
     "transform-class-properties",
+    //转换类的私有属性
     "transform-es2015-classes",
+    //转换私有类
     [
       "import",
-      // use for weui
-      // {
-      //   "style": "../../../react-weui.min.css",
-      //   "libraryDirectory": "build/packages/components",
-      //   "libraryName": "react-weui"
-      // },
-      // {
-      //   "style": "style/weui.min.css",
-      //   "libraryDirectory": "dist",
-      //   "libraryName": "weui"
-      // },
       {
-        "style": "../styles",
-        "libraryDirectory": "", // default is lib
-        "libraryName": "material-ui"
+        "libraryName": "material-ui",
+        "libraryDirectory": "" // default is lib
       }
     ]
+    //按需加载
+    //libraryName：库的名称
+    //style指定样式的位置，自动导入css样式，可能导入全局样式，不建议使用
+    //libraryDirectory指定库的位置
+    //webpack如果设置vendor有可能影响按需加载
   ]
+  //plugins从上到下执行
 }

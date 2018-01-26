@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 //生成独立文件
 const ENV = process.env.NODE_ENV || 'production';
 
@@ -115,15 +116,8 @@ module.exports = function (args) {
         filename: 'css/[name].css' //生成文件的文件名，name默认文件名
       }),
       // 生成独立css文件
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false
-        },
-        minimize:true
-      }),
-      //压缩loader，暂时这样使用，后续可能移除
-      //compress[warnings] 错误信息是否显示
-      //minimize是否启用压缩
+      new UglifyJsPlugin(),
+      //UgligyJsPlugin压缩插件，替换原来的webpack.optimize.UglifyJsPlugin插件
       new webpack.optimize.ModuleConcatenationPlugin()
       //作用域提升，提高打包速度，压缩打包大小
     ]
