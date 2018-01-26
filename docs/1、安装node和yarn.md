@@ -141,13 +141,13 @@ webpack.config.js(package.json里边的CLI命令是指向这个文件)
     };
 package.json
 
-  "scripts": {
-      "start": "cross-env NODE_ENV=dev && webpack-dev-server --open --env dev",
-      "build": "cross-env NODE_ENV=production && webpack --env production"
-    },
-  //cross-env webpack-dev-server需要安装
-  //yarn add cross-env webpack-dev-server --dev
-  //cross-env解决不同系统下命令不同
-  //webpack-dev-server webpack小型服务器 --open自动打开浏览器
-  //NODE_ENV=dev、production 设置node环境为dev
-  //--evn dev/production 传入webpack.config.js的enviroment
+      "scripts": {
+          "start": "cross-env NODE_ENV=dev && webpack-dev-server --open --env dev",
+          "build": "cross-env NODE_ENV=production && webpack --env production"
+        },
+      //cross-env webpack-dev-server需要安装
+      //yarn add cross-env webpack-dev-server --dev
+      //cross-env解决不同系统下命令不同
+      //webpack-dev-server webpack小型服务器 --open自动打开浏览器
+      //NODE_ENV=dev、production 设置node环境为dev
+      //--evn dev/production 传入webpack.config.js的enviroment
