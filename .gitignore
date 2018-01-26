@@ -1,0 +1,8 @@
+.DS_STORE
+*.log
+.eslintcache
+node_modules
+dist
+output
+.idea/
+yarn.lock
