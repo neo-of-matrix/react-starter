@@ -7,14 +7,13 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 //webpack-merge 合并多个webpack配置文件
-const PUBLICPATH = '/assets/';
+const PUBLICPATH = '/';
 //dev导出目录
 const PORT = '8080';
 //端口号
 const ENV = process.env.NODE_ENV || 'dev';
 //存储node传来的参数NODE_ENV
 const options = {
-  // publicPath: '/', // for `ip:port`, not need `ip:port/${output}`
   publicPath: PUBLICPATH,
   //导出目录
   loaders: {
@@ -95,6 +94,8 @@ module.exports = function (args) {
       }
     },
     plugins: [
+    new webpack.NamedModulesPlugin(),
+    //当开启 HotModuleReplacementPlugin 的时候使用该插件会显示模块的相对路径
     new webpack.HotModuleReplacementPlugin(),
     //其他服务器热更新
     new webpack.NoEmitOnErrorsPlugin()

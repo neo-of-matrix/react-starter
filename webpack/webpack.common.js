@@ -7,26 +7,25 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 //生成HTML5文件，插入所有script标签
 module.exports = function (options) {
-  const PUBLICPATH = options.publicPath || '/assets/';
+  const PUBLICPATH = options.publicPath;
   //导出目录
   const ROOTPATH = options.ROOTPATH;
   //传入根路径
-  const entry = ['./app.js'];
+  const entry = ['react-hot-loader/patch','./app.js'];
   //入口文件
   return {
     name: 'browser',
     context: path.resolve(ROOTPATH, 'src/'),
     //定义上下文环境
     entry: {
-      app: options._DEV_
-        ? entry.concat(`webpack-hot-middleware/client?path=${PUBLICPATH}/__webpack_hmr&timeout=10000&reload=true`) : entry
+      app: entry
     },
     //入口，根据环境变量指定不同入口，这个也有多种配置方式
     //webpack-hot-middleware用来热更新另外的服务起，比如node的express服务器，模仿webpack-dev-server的热更新
     //path 事件流路径 timeout 超时断开 reload 当webpack停止时重新刷新页面
     output: {
       publicPath: PUBLICPATH,
-      //按需加载或者加载图片和文件时有用，CDN
+      //按需加载或者加载图片和文件时有用，上线地址
       filename: 'scripts/[name].js',
       //每个输出文件的名称，name使用默认名称
       path: path.resolve(ROOTPATH, 'dist/'),
@@ -48,7 +47,7 @@ module.exports = function (options) {
           }
         },
         {
-          test: /\.s?[ac]ss$/,
+          test: /\.(sass|scss)$/,
           exclude: /node_modules/,
           use: options.loaders.sass
         },
@@ -59,6 +58,7 @@ module.exports = function (options) {
         },
         {
           test: /\.css$/,
+          exclude: /node_modules/,
           use: options.loaders.css
         },
         {
@@ -122,10 +122,6 @@ module.exports = function (options) {
         //removeComments去除注释
         //removeAttributeQuotes如果可以，移除属性的引号
       })
-    ],
-    externals: {
-      'highlight': 'hljs'
-    }
-    //排除外部引用CDN
+    ]
   };
 };

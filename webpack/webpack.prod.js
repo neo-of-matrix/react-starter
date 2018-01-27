@@ -12,32 +12,44 @@ const ENV = process.env.NODE_ENV || 'production';
 
 // 拓展配置
 const options = {
-  publicPath: '//www.example.com/',
-  //CDN地址
+  //publicPath: '',
+  //上线地址
   loaders: {
     sass: ExtractTextPlugin.extract({
-      fallback: 'style-loader',
-      use: [
-        'css-loader',
+      use: [{
+        loader:'css-loader',
+        options:{
+          minimize:true
+        }
+      },
         'postcss-loader',
         'sass-loader'
-      ]
+      ],
+      fallback: 'style-loader'
     }),
     //提取内容到单独文件，样式文件较大时使用
     less: ExtractTextPlugin.extract({
-      fallback: 'style-loader',
-      use: [
-        'css-loader',
+      use: [{
+        loader:'css-loader',
+        options:{
+          minimize:true
+        }
+      },
         'postcss-loader',
         'less-loader'
-      ]
+      ],
+      fallback: 'style-loader'
     }),
     css: ExtractTextPlugin.extract({
-      fallback: 'style-loader',
-      use: [
-        'css-loader',
+      use: [{
+        loader:'css-loader',
+        options:{
+          minimize:true
+        }
+      },
         'postcss-loader'
-      ]
+      ],
+      fallback: 'style-loader'
     }),
     imageAssets: [
     {

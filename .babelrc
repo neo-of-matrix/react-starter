@@ -25,7 +25,7 @@
       //选项对象配置babel-preset-env
     ],
     "react",//解析react
-    "stage-2"//解析stage-0草案
+    "stage-2"//解析stage-2
   ],
   //presets执行顺序是倒序，即先执行stage-0、react、env
   "plugins": [
