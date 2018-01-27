@@ -5,7 +5,7 @@
       //设置babel-preset-env，可以省略前缀babel-preset-
       {
         "modules": false,
-        //设置ES6模块语法是否转换为"amd" | "umd" | "systemjs" | "commonjs"
+        //设置ES6模块语法是否转换为"amd" | "umd" | "systemjs" | "commonjs"，默认commonjs
         "targets":{
           "browsers":["last 2 versions"],
           //选择浏览器范围进行解析，影响polyfill大小，看你项目的兼容性要求
@@ -25,13 +25,13 @@
       //选项对象配置babel-preset-env
     ],
     "react",//解析react
-    "stage-0"//解析stage-0草案
+    "stage-2"//解析stage-0草案
   ],
   //presets执行顺序是倒序，即先执行stage-0、react、env
   "plugins": [
     ["transform-runtime", {
       "helpers": false,
-      //是否吧babel内联helper，比如classCallCheck, extends替换为模块
+      //是否把babel内联helper，比如classCallCheck, extends替换为模块
       "polyfill": false,
       //是否把内置变量转换为私有polyfill
       "regenerator": true,
@@ -39,10 +39,8 @@
       "moduleName": "babel-runtime",
       //设置导入helpers时的名字和路径
     }],
-    "transform-class-properties",
-    //转换类的私有属性
-    "transform-es2015-classes",
-    //转换私有类
+    "transform-decorators-legacy", //修饰符语法转换插件
+    "react-hot-loader/babel", //热更新插件
     [
       "import",
       {
