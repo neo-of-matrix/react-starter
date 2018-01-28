@@ -1,32 +1,46 @@
 {
   "parser": "babel-eslint",
+  //设置解析器，解析不能够被eslint识别的语言特性
+  //parserOptions的ecmaFeatures的modules属性可能失效
   "parserOptions": {
+    //解析器选项
     "ecmaFeatures": {
+      //设置额外的语言特性
       "jsx": true, // 支持jsx
-      "modules": false
+      "modules": false // 不转换
     }
   },
   "plugins": [
-    "babel",
-    "react"
+    //设置插件，省略eslint-plugin-
+    "babel", //配合babel-eslint使用，修复了一些实验性特性
+    "react" //react校验规则
   ],
   "extends": [
-    "standard",
-    "standard-react"
+    "standard", //扩展eslint规则
+    "standard-react"//扩展react校验规则
   ],
   "rules": {
+    //启用的规则及其各自的错误级别
+    //"off" 或 0 - 关闭规则
+    //"warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
+    //"error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
     "strict": 0,
+    //严格模式
     "semi": [1, "always"],
+    //分号
     "quotes": [
       1,
       "single"
     ],
+    //单引号
     "indent": [
       "warn",
       2,
       {
         "SwitchCase": 1
+        //设置switch语句中的case语句缩进
       }
+      //缩进
     ],
     "comma-spacing": [
       1,
@@ -34,14 +48,16 @@
         "before": false,
         "after": true
       }
+      //设置逗号前后空格
     ],
     "no-unused-vars": [
       1,
+        // 禁止未使用过的变量
       {
-        // 允许声明未使用变量
         "vars": "local",
-        // 参数不检查
+        //仅仅检测本作用域中声明的变量是否使用
         "args": "none"
+        // 不检查参数
       }
     ],
     //必须使用 if(){} 中的{}
@@ -49,17 +65,24 @@
       2,
       "all"
     ],
+    //在块区域前后时刻保留大括号
     "no-useless-constructor": 0,
+    //禁用不必要的构造函数
     "react/no-did-mount-set-state": 0,
+    //禁止在componentDidMount函数内使用this.setState，必须包含在一个回调函数里面
     "react/prop-types": 0
+    //必须使用prop-types验证
   },
   "env": {
     "browser": true,
     "es6": true
   },
+  //允许使用浏览器中的全局变量
+  //启用ES6特性，自动设置ecmaVersion:6
   "globals": {
     "__DEV__": false,
     "__TEST__": false,
     "__PROD__": false
   }
+  //使用全局变量，不能修改
 }
