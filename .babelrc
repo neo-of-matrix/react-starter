@@ -1,4 +1,14 @@
 {
+  "env":{
+    "production":{
+      "plugins": ["transform-react-remove-prop-types",{
+        "removeImport":true,
+        "ignoreFilenames": ["node_modules"]
+      }]
+    }
+  },
+  //env环境变量从 process.env.BABEL_ENV 获取，如果没有的话，则获取 process.env.NODE_ENV 的值，它也无法获取时会设置为 "development" 。
+  //transform-react-remove-prop-types，在业务代码逻辑中使用这个插件，可能会引发问题，配合eslint-plugin-react使用
   "presets": [
     [
       "env",

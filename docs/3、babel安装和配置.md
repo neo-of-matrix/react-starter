@@ -12,6 +12,7 @@
     yarn add react-hot-loader //支持react热更新，构建时不会打包
     yarn add babel-plugin-transform-runtime --dev //支持helpers，polyfill，regenerator配置，减少polyfill重复代码，避免全局变量污染
     yarn add babel-runtime //支持helpers，polyfill，regenerator配置，减少polyfill重复代码，避免全局变量污染
+    yarn add babel-plugin-transform-react-remove-prop-types --dev //构建时移除prop-types相关代码，在业务代码逻辑中使用这个插件，可能会引发问题，配合eslint-plugin-react使用
 
 ### 配置 ###
 项目目录新建.babelrc文件
