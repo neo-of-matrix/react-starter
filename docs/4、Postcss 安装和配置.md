@@ -1,4 +1,4 @@
-### Postcss 安装和配置 ###
+### 4、Postcss 安装和配置 ###
 PostCSS 是一个允许使用 JS 插件转换样式的工具。 这些插件可以检查（lint）你的 CSS，支持 CSS变量 和 Mixins， 新的CSS语法，模拟类似sass的功能，内联图片等。
 
 我们现在使用PostCss的自动添加前缀插件autoprefixer，其他功能前面已经实现
