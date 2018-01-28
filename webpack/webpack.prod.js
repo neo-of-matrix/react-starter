@@ -19,7 +19,8 @@ const options = {
       use: [{
         loader:'css-loader',
         options:{
-          minimize:true
+          minimize:true,
+          importLoaders: 2
         }
       },
         'postcss-loader',
@@ -32,7 +33,8 @@ const options = {
       use: [{
         loader:'css-loader',
         options:{
-          minimize:true
+          minimize:true,
+          importLoaders: 2
         }
       },
         'postcss-loader',
@@ -44,7 +46,8 @@ const options = {
       use: [{
         loader:'css-loader',
         options:{
-          minimize:true
+          minimize:true,
+          importLoaders: 1
         }
       },
         'postcss-loader'

@@ -20,22 +20,37 @@ const options = {
     sass: [{
           loader: "style-loader"
       }, {
-          loader: "css-loader"
+          loader: "css-loader",
+          options:{
+            importLoaders: 2
+          }
       }, {
+          loader: "postcss-loader"
+      },{
           loader: "sass-loader"
       }],
     less: [{
           loader: "style-loader"
       }, {
-          loader: "css-loader"
+          loader: "css-loader",
+          options:{
+            importLoaders: 2
+          }
+      }, {
+          loader: "postcss-loader"
       }, {
           loader: "less-loader"
       }],
     css: [{
         loader: "style-loader"
-    }, {
-        loader: "css-loader"
-    }],
+      }, {
+        loader: "css-loader",
+        options:{
+          importLoaders: 1
+        }
+      }, {
+          loader: "postcss-loader"
+      }],
     imageAssets: [{
       loader:'url-loader',
       options:{
