@@ -1,4 +1,4 @@
-### eslint安装和配置 ###
+### 5、eslint安装和配置 ###
 插件化的JavaScript和JSX校验工具
 ### 安装 ###
 
@@ -24,3 +24,13 @@
 在根目录新建.eslintrc文件和.eslintignore忽略验证的目录和文件
 参考
 [https://github.com/designersmallweb/react-technology-stack/blob/master/.eslintrc](https://github.com/designersmallweb/react-technology-stack/blob/master/.eslintrc "https://github.com/designersmallweb/react-technology-stack/blob/master/.eslintrc")
+
+package.json
+
+    "scripts": {
+        "lint": "eslint --cache --fix src"
+    }
+
+--cache 开启缓存
+--fix 自动修复错误
+src 校验的目录
