@@ -51,13 +51,13 @@
     }],
     "transform-decorators-legacy", //修饰符语法转换插件
     "react-hot-loader/babel", //热更新插件
-    [
+/*    [
       "import",
       {
         "libraryName": "material-ui",
         "libraryDirectory": "" // default is lib
       }
-    ]
+    ]*/
     //按需加载
     //libraryName：库的名称
     //style指定样式的位置，自动导入css样式，可能导入全局样式，不建议使用

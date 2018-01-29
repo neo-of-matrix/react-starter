@@ -6,3 +6,4 @@ dist
 output
 .idea/
 yarn.lock
+api
