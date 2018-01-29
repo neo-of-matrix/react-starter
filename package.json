@@ -4,7 +4,7 @@
   "main": "index.js",
   "repository": "https://github.com/designersmallweb/react-technology-stack.git",
   "author": "designersmallweb <zuishiguang@126.com>",
-  "license": "MIT",
+  "license": "BSD 3-Clause",
   "scripts": {
     "doc": "./node_modules/.bin/documentation build src/app.js -f html -o api",
     "lint": "eslint --cache --fix src",
