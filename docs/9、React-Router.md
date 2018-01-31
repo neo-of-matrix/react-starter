@@ -303,3 +303,16 @@ from: string
 exact: bool
 
 strict: bool
+
+### withRouter ###
+获取history对象的属性和最近路由的match对象
+
+使用场景：router嵌套route，route组件connect store 订阅state,路由跳转不会触发路由的render
+
+不会监听location改变，不会重新渲染
+
+    withRouter(connect(...)(MyComponent))
+    compose(withRouter,connect(...))(MyComponent)
+
+    MyComponent.WrappedComponent //用于测试组件
+    wrappedComponentRef: func（{c => this.component = c}） //传递函数
