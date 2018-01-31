@@ -11,7 +11,7 @@ module.exports = function (options) {
   //导出目录
   const ROOTPATH = options.ROOTPATH;
   //传入根路径
-  const entry = ['react-hot-loader/patch','./app.js'];
+  const entry = ['react-hot-loader/patch','./index.jsx'];
   //入口文件
   return {
     name: 'browser',
