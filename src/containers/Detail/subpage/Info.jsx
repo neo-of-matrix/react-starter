@@ -1,11 +1,11 @@
 import React from 'react'
 import {getInfoData} from '../../../fetch/detail/detai.js'
 import DeatilInfo from '../../../components/DeatilInfo'
-class Info extends React.PureComponent {
+class Info extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state={
-            info:false
+            info:{}
         }
     }
     render() {
