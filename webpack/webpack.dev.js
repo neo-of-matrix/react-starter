@@ -7,7 +7,7 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 //webpack-merge 合并多个webpack配置文件
-const PUBLICPATH = '/';
+const PUBLICPATH = '/assets/';
 //dev导出目录
 const PORT = '8080';
 //端口号
@@ -105,7 +105,7 @@ module.exports = function (args) {
             return `${PUBLICPATH}/index.html`;
           }
         }
-        //跳过代理
+        //解决访问二级路由404错误问题
       }
     },
     plugins: [

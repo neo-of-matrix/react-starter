@@ -10,10 +10,12 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 //生成独立文件
 const ENV = process.env.NODE_ENV || 'production';
 
+
 // 拓展配置
 const options = {
   //publicPath: '',
   //上线地址
+
   loaders: {
     sass: ExtractTextPlugin.extract({
       use: [{

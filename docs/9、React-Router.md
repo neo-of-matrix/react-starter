@@ -12,6 +12,7 @@ v4引入组件思想，路由也是组件
 三种组件
 
 ### router组件 ###
+
 创建history对象
 <BrowserRouter>和<HashRouter>两种组件
 
@@ -58,6 +59,7 @@ children: node
 ### <Route>和<Switch> ###
 
 ### Route组件 ###
+
 path属性和当前location的pathname进行比较，匹配时渲染组件，不匹配渲染null
 Route没有path属性，总是匹配
 可以放在任何地方，经常是一个Route列表
@@ -81,30 +83,30 @@ url:string URL的匹配部分，实际匹配路径
 location对象
 代表当前路径，永远不变，可以携带state
 
-  {
-    key: 'ac3df4', // not with HashHistory!
-    pathname: '/somewhere' //实际路径
-    search: '?some=search-string',
-    hash: '#howdy',
-    state: {
-      [userDefined]: true
+    {
+      key: 'ac3df4', // not with HashHistory!
+      pathname: '/somewhere' //实际路径
+      search: '?some=search-string',
+      hash: '#howdy',
+      state: {
+        [userDefined]: true
+      }
     }
-  }
 
-  Route component as this.props.location
-  Route render as ({ location }) => ()
-  Route children as ({ location }) => ()
-  withRouter as this.props.location
+    Route component as this.props.location
+    Route render as ({ location }) => ()
+    Route children as ({ location }) => ()
+    withRouter as this.props.location
 
-  const location = {
-    pathname: '/somewhere',
-    state: { fromDashboard: true }
-  }
-  
-  <Link to={location}/>
-  <Redirect to={location}/>
-  history.push(location)
-  history.replace(location)
+    const location = {
+      pathname: '/somewhere',
+      state: { fromDashboard: true }
+    }
+
+    <Link to={location}/>
+    <Redirect to={location}/>
+    history.push(location)
+    history.replace(location)
 
 history对象，history包
 
@@ -203,6 +205,7 @@ sensitive: bool
 设置匹配规则是否区分大小写
 
 ### Switch组件 ###
+
 通常用于Route列表
 只渲染第一个匹配成功的Route组件
 所有Route组件都没有匹配成功，渲染404组件（没有path属性的Route组件）
@@ -225,7 +228,7 @@ Route path /Redirect from
 to:string
 导航位置：pathname,search,hash
 
-  <Link to='/courses?sort=name'/>
+    <Link to='/courses?sort=name'/>
 
 to:object
 
@@ -305,6 +308,7 @@ exact: bool
 strict: bool
 
 ### withRouter ###
+
 获取history对象的属性和最近路由的match对象
 
 使用场景：router嵌套route，route组件connect store 订阅state,路由跳转不会触发路由的render
@@ -316,3 +320,61 @@ strict: bool
 
     MyComponent.WrappedComponent //用于测试组件
     wrappedComponentRef: func（{c => this.component = c}） //传递函数
+
+### 路由404、找不到页面错误 ###
+
+直接访问路由的二级地址，会找不到页面引发404
+
+原因：浏览器会认为这是一个URL请求，向服务器端请求这个URL代表的资源。但我们这是一个单页面应用，服务端只有一个index.html页面，没有跟这个地址匹配的资源，页面就会报错了。
+
+解决方法：
+
+服务器配置：将所有这样的请求都指向index.html页面，由前台处理路由信息
+
+    webpack-dev-server
+    第一种情况
+    没有修改 output.publicPath
+    devServer: {
+      historyApiFallback: true
+    }
+    第二种情况
+    设置了 output.publicPath 为自定义值
+    // output.publicPath: '/assets/'
+    devServer: {
+      historyApiFallback: {
+        index: '/assets/'
+      }
+    }
+    另一种解决方案
+    //const PUBLICPATH = '/assets/'
+    proxy: {
+      '/': {
+        bypass: function(req, res, proxyOptions) {
+          if (req.headers.accept.indexOf('html') !== -1) {
+            console.log('Skipping proxy for browser request.');
+            return `${PUBLICPATH}/index.html`;
+          }
+        }
+      }
+    }
+
+    Node
+    app.get('*', function (request, response){
+      response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+    })
+
+    Nginx
+    server {
+      ...
+      location / {
+        try_files $uri /index.html
+      }
+    }
+
+    Apache
+    在项目根目录创建 .htaccess 文件
+    RewriteBase /
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
