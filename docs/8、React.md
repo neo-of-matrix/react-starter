@@ -356,3 +356,6 @@ Immutable.js/seamless-immutable/immutability-helper
 
 React Transition Group
 React Motion
+React animation
+velocity-react
+GSAP
