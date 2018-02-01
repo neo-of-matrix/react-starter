@@ -258,6 +258,8 @@ React.PureComponent
 通过shouldComponentUpdate（nextProps, nextState）比较this.props.属性===nextProps.属性和this.state.状态===nextState.状态决定是否重新渲染
 在更新数组和对象等数据结构数据时会有问题
 
+数组添加元素
+
 错误
 
     const words = this.state.words;
@@ -269,11 +271,65 @@ React.PureComponent
     this.setState(prevState => ({
         words: prevState.words.concat(['marklar'])
       }));
+
 或者
 
     this.setState(prevState => ({
         words: [...prevState.words, 'marklar'],
       }));
+
+数组删除元素
+
+    const words = this.state.words;
+    words.splice(index,1);
+    this.setState({words: words});
+
+改为
+
+    this.setState(prevState => ({
+        words: prevState.words.slice(0,index)
+                              .concat(prevState.words.slice(index+1))
+      }));
+
+或者
+
+    this.setState(prevState => ({
+        words: [
+                ...prevState.words.slice(0,index),
+                ...prevState.words.slice(index+1)]
+      }));
+
+数组替换元素
+
+错误
+
+    const incrementCounter=(list,index)=>{
+      list[index]++;
+      return list;
+    }
+
+改为
+
+    const incrementCounter=(list,index)=>{
+      return list
+        .slice(0,index)
+        .concat([list[index]+1])
+        .concat(list.slice(index+1))
+    }
+
+或者
+
+    const incrementCounter=(list,index)=>{
+      return
+        [
+          ...list.slice(0,index),
+          list[index]+1,
+          ...list.slice(index+1)
+        ]
+    }
+
+修改对象属性
+
 错误
 
     function updateColorMap(colormap) {
