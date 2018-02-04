@@ -47,8 +47,8 @@ Redux是一个状态管理工具，受Flxu思想启发，借鉴Elm，函数式�
 
 ### 安装 ###
 
-  yarn add reduxe //redux库
-  yarn add react-redux //配合redux实用
+    yarn add reduxe //redux库
+    yarn add react-redux //配合redux实用
 
 ### 使用场景 ###
 
@@ -85,7 +85,6 @@ Redux概念比较多，尽可能用大白话介绍
 一个对象，状态管理容器，储存网站应用所有state
 
     const store = createStore(reducer, [preloadedState], [enhancer])
-
     reducer(currentState,action):Function
     //函数返回新的state
     preloadedState:any 配合reducer使用，如果使用combineReducer，则只能是一个对象
@@ -101,6 +100,7 @@ Redux概念比较多，尽可能用大白话介绍
 applyMiddleware(...middleware)
 
 //middleware(getState,dispatch) 一个函数
+
 //返回一个函数，传给下一个middleware，作为它的dispatch参数
 
 ### state ###
@@ -181,6 +181,7 @@ UI 状态（UI state）: 控制 UI 如何展示的数据（传递给UI组件用�
 相关工具
 
 dot-prop-immutable
+
 immutability-helper
 
 参考
