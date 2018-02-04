@@ -140,14 +140,14 @@ UI 状态（UI state）: 控制 UI 如何展示的数据（传递给UI组件用�
 
 在数组中更新，插入和删除数据
 
-  //数组更新一个元素
+//数组更新一个元素
+
     function updateObjectInArray(array, action) {
         return array.map( (item, index) => {
             if(index !== action.index) {
                 // 这不是要修改的元素，保持原样
                 return item;
             }
-
             // 修改的元素，返回新的数组
             return {
                 ...item,
@@ -155,19 +155,25 @@ UI 状态（UI state）: 控制 UI 如何展示的数据（传递给UI组件用�
             };
         });
     }
-  //数组插入元素
+
+//数组插入元素
+
     function insertItem(array, action) {
         let newArray = array.slice();
         newArray.splice(action.index, 0, action.item);
         return newArray;
     }
-  //数组删除元素
+
+//数组删除元素
+
     function removeItem(array, action) {
         let newArray = array.slice();
         newArray.splice(action.index, 1);
         return newArray;
     }
-  //数组删除元素
+
+//数组删除元素
+
     function removeItem(array, action) {
         return array.filter( (item, index) => index !== action.index);
     }
@@ -306,10 +312,15 @@ case function: 处理action相关内容，传入多个参数
 higher-order reducer: reducer函数作为它的参数，返回新的reducer
 
 可重用的工具函数
+
 处理特殊state属性的回调函数
+
 处理某个state属性的reducer函数
+
 处理switch case的函数
+
 合并case reducer的函数
+
 形成根reducer
 
 ### Reducer 逻辑复用 ###
@@ -363,6 +374,7 @@ dispatch 一个函数
 ### compose(...functions) ###
 
 使用多个中间件
+
 执行顺序从右到左
 
     import { createStore, applyMiddleware, compose } from 'redux'
@@ -404,6 +416,7 @@ children 根组件
 一个函数，返回一个对象stateProps，监听store变化，返回一个对象，变为props的属性，这样就可以取到了
 
 ### state ###
+
 Redux store的state对象，react-redux自动调用store.getState()得到state对象
 
 ### ownProps ###
@@ -549,11 +562,17 @@ enhancer/middleware
 改造原生store.dispatch方法，添加一些其他功能，但是最后必须返回一个action对象，可以传入多个middleware，有顺序，参考中间件的文档
 
 cross_fetch //发送请求
+
 redux-thunk
+
 redux-promise
+
 redux-promise-middleware
+
 redux-observable
+
 redux-saga
+
 redux-pack
 
 网上中间件比价多，大家按需学习
@@ -561,6 +580,7 @@ redux-pack
 ### 后退和前进 ###
 
 后退和前进修改state
+
 redux-undo
 
 ### 计算衍生数据 ###
@@ -572,33 +592,63 @@ reselect
 Redux相关工具
 
 normalizr //state扁平数据结构
+
 redux-act //创建action creatror
+
 redux-actions //创建action creatror
+
 cross_fetch //发送请求
+
 redux-thunk //中间件
+
 redux-promise //dispatch promise
+
 redux-promise-middleware //dispatch promise
+
 redux-observable //dispatch observable
+
 redux-saga //创建复杂action
+
 redux-pack //dispatch promise
+
 redux-undo //后退和前进state
+
 reselect //计算衍生数据
+
 redux-immutable //
+
 reduce-reducers不同 reducers 之间共享数据
+
 dot-prop-immutable
+
 object-path-immutable
+
 Redux-ORM
+
 dot-prop-immutable
+
 immutability-helper
+
 redux-ui
+
 redux-component
+
 redux-react-local
+
 redux-watch
+
 redux-subscribe
+
 Redux Loop
+
 redux-ignore
+
 reduxr-scoped-reducer
+
 redux-log-slow-reducers
+
 redux-batched-subscribe（一个高级的reducer，可以让你单独分发几个action）
+
 redux-batched-subscribe（一个store增强器，可以平衡多个分发情况下订阅者的调用次数）
+
 redux-batched-actions（一个store增强器，可以利用单个订阅提醒的方式分发一系列的 action）
