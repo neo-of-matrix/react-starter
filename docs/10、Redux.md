@@ -481,18 +481,23 @@ ownProps
 
 [pure] (Boolean): 为真，如果state和props相同，避免重新渲染
 默认：true
+
 [areStatesEqual] (Function):
 比较前后state
 默认：===
+
 [areOwnPropsEqual] (Function):
 比较前后props
 默认：比较值相等，或者对象含有相同的键，其属性值相等
+
 [areStatePropsEqual] (Function):
 比较mapStateToProps前后结果
 默认：比较值相等，或者对象含有相同的键，其属性值相等
+
 [areMergedPropsEqual] (Function):
 比较mergeProps
 默认：比较值相等，或者对象含有相同的键，其属性值相等
+
 [storeKey] (String):
 从哪里读取store
 多个store使
@@ -518,13 +523,13 @@ ownProps
 
 两种action表示
 
-  { type: 'FETCH_POSTS' }
-  { type: 'FETCH_POSTS', status: 'error', error: 'Oops' }
-  { type: 'FETCH_POSTS', status: 'success', response: { ... } }
+    { type: 'FETCH_POSTS' }
+    { type: 'FETCH_POSTS', status: 'error', error: 'Oops' }
+    { type: 'FETCH_POSTS', status: 'success', response: { ... } }
 
-  { type: 'FETCH_POSTS_REQUEST' }
-  { type: 'FETCH_POSTS_FAILURE', error: 'Oops' }
-  { type: 'FETCH_POSTS_SUCCESS', response: { ... } }
+    { type: 'FETCH_POSTS_REQUEST' }
+    { type: 'FETCH_POSTS_FAILURE', error: 'Oops' }
+    { type: 'FETCH_POSTS_SUCCESS', response: { ... } }
 
 把请求数据dispatch action和特定的UI dispatch action分开
 
@@ -589,7 +594,7 @@ reselect
 
 
 
-Redux相关工具
+### Redux相关工具
 
 normalizr //state扁平数据结构
 
