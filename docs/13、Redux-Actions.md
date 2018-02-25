@@ -2,6 +2,8 @@
 
 Redux-Actions是一个优化Redux结构的工具库，Redux有action, action creator, reducer等有许多相同的代码
 
+遵循flux-standard-action规范
+
 ### 安装 ###
 
 	yarn add redux-actions
