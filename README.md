@@ -13,7 +13,7 @@
 
 1. `api`: API文档；
 2. `docs`: 文档目录；
-3.`mock` 应用服务模块
+3. `mock` 应用服务模块
 4. `public` favicon目录
 5. `webpack`: 为webpack配置目录；
 6. `.babelrc`: babel的配置文件，使用babel编译React和JavaScript代码；
