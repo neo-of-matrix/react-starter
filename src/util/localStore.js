@@ -1,15 +1,12 @@
 export default {
   getItem: function (key) {
-    let value;
     try {
-      value = localStorage.getItem(key);
+      localStorage.getItem(key);
     } catch (ex) {
       // 开发环境下提示error
       if (__DEV__ === 'dev') {
         console.error('localStorage.getItem报错, ', ex.message);
       }
-    } finally {
-      console.log(value);
     }
   },
   setItem: function (key, value) {
