@@ -120,7 +120,7 @@ module.exports = function (args) {
       //构建前删除dist目录
       new webpack.optimize.CommonsChunkPlugin({
         name: 'common', // common chunk 的名称, 不指定filename时，生成文件的默认文件名
-        filename: 'scripts/common.js',//common chunk 的文件名模板
+        filename: 'scripts/common.[chunkhash].js',//common chunk 的文件名模板
         minChunks: function(module) {
             if (module.resource && (/^.*\.(css|scss|less)$/).test(module.resource)) {
                 return false;
@@ -130,13 +130,16 @@ module.exports = function (args) {
         //移入公共chunck的条件（这里不太清楚）,配合ExtractTextPlugin配合使用
       }),
       new ExtractTextPlugin({
-        filename: 'css/[name].css' //生成文件的文件名，name默认文件名
+        filename: 'css/[name].[chunkhash].css' //生成文件的文件名，name默认文件名
       }),
       // 生成独立css文件
       new UglifyJsPlugin(),
       //UgligyJsPlugin压缩插件，替换原来的webpack.optimize.UglifyJsPlugin插件
-      new webpack.optimize.ModuleConcatenationPlugin()
+      new webpack.optimize.ModuleConcatenationPlugin(),
       //作用域提升，提高打包速度，压缩打包大小
+      new webpack.NoEmitOnErrorsPlugin()
+      //在编译出现错误时，使用 NoEmitOnErrorsPlugin 来跳过输出阶段
+      //确保代码里面不会包含错误代码
     ]
   });
 };

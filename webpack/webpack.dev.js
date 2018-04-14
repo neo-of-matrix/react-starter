@@ -113,8 +113,6 @@ module.exports = function (args) {
     //当开启 HotModuleReplacementPlugin 的时候使用该插件会显示模块的相对路径
     new webpack.HotModuleReplacementPlugin(),
     //其他服务器热更新
-    new webpack.NoEmitOnErrorsPlugin()
-    //在编译出现错误时，使用 NoEmitOnErrorsPlugin 来跳过输出阶段
     ]
   });
 };

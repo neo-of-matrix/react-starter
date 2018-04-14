@@ -26,7 +26,7 @@ module.exports = function (options) {
     output: {
       publicPath: PUBLICPATH,
       //按需加载或者加载图片和文件时有用，上线地址
-      filename: 'scripts/[name].js',
+      filename: 'scripts/[name].[chunkhash].js',
       //每个输出文件的名称，name使用默认名称
       path: path.resolve(ROOTPATH, 'dist/'),
       //输出路径，绝对路径
